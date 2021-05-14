@@ -34,7 +34,7 @@ function addBookToLibrary() {
     newBookAuthor = document.createElement('p');
     newBookPages = document.createElement('p');
     newBookRead = document.createElement('p');
-    newBookRead.setAttribute('id', 'read')
+    newBookRead.setAttribute('id', `read ${newbook.id}`)
     newBookTitle.textContent = newBook.title;
     newBookAuthor.textContent = newBook.author;
     newBookPages.textContent = newBook.pages;
@@ -46,7 +46,7 @@ function addBookToLibrary() {
     newBookElement.appendChild(newBookRead);
     form.reset();
     addRemoveBtn(newBook.id);
-    addReadBtn();
+    addReadBtn(newBook.id);
 }
 
 function addRemoveBtn(id) {
@@ -61,12 +61,17 @@ function addRemoveBtn(id) {
     })
 }
 
-function addReadBtn(){
+function addReadBtn(id){
+    let otherID = id;
     readBtn = document.createElement('button');
+    readBtn.setAttribute('id', id)
     readBtn.textContent = 'read';
     newBookElement.appendChild(readBtn);
     readBtn.addEventListener('click', ()=>{
-        newBookRead.textContent === 'read' ? newBookRead.textContent = 'not read' : newBookRead.textContent = 'read';
+        let read = document.getElementById(`read ${id}`);
+        read.textContent === 'read' ? read.textContent = 'not read' : read.textContent = 'read';
+        
+        
     })
 
 }
